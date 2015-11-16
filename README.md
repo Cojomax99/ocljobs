@@ -1,6 +1,10 @@
 # ocljobs
 A basic Django application and web front-end for accessing the GitHub Jobs API.
 
+![Demo](https://dl.dropboxusercontent.com/u/40829872/ocl/screenie.png)
+
+NOTE: Click on a row and it will expand to show more details about that job.
+
 ## To install:
 Make sure you have python 2 or 3 installed on your system. I am pretty sure what I wrote is usable with both.
 
