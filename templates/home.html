@@ -1,0 +1,102 @@
+{% load json_helpers %}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <title>Awesome Github Jobs Search</title>
+
+    <link rel="icon" href="{% static "images/favicon.ico" %}">
+    <link rel="stylesheet" href="{% static "css/normalize.css" %}">
+    <link rel="stylesheet" href="{% static "css/skeleton.css" %}">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <h4><strong>GitHub</strong> Jobs - <em>Redux</em></h4>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <form action="/search/" method="GET">
+                {% csrf_token %}
+                {% for field in form %}
+                    {% if field.name == "full_time" %}
+                        <div class="two columns full_time_div">
+                        {{ field }}
+                        {{ field.label }}
+                        </div>
+                    {% else %}
+                        <div class="four columns nomargin">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <button id="search-button" class="button-primary" type="submit">Submit</button>
+            </form>
+        </div>
+
+        {% if data %}
+            <p>Showing {{ data|length }} jobs</p>
+        {% endif %}
+
+        <table class="u-full-width">
+            <thead>
+                <tr>
+                    <th>Company Logo</th>
+                    <th>Title</th>
+                    <th>Position - Type</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in data %}
+                    <tr class="list-row" data-entry="{{ entry.id }}">
+                        <td class="td-logo">
+                            {% if entry.company_logo %}
+                                <img class="company-logo" src="{{ entry.company_logo|safe }}">
+                            {% endif %}
+                        </td>
+                        <td><span class="title">{{ entry.title }}</span></td>
+                        <td><span class="company">{{ entry.company }} - <span class="type">{{ entry.type }}</span></span></td>
+
+                        <td><div class="location">{{ entry.location }}</div></td>
+                    </tr>
+                    <tr class="details" id="{{ entry.id }}">
+                        <td colspan="3"><div>{{ entry.description|safe }}</div></td>
+                        <td class="right-sub-column" valign="top" colspan="1">
+                            {% if entry.company_logo %}
+                                <img class="company-logo" src="{{ entry.company_logo|safe }}">
+                            {% endif %}
+                            {% if entry.company_url %}
+                                <p>
+                                    <a href="{{ entry.company_url|safe }}">{{ entry.company_url }}</a>
+                                </p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {# Javascript #}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+        // Hide all the details on page load
+        $('.details').hide();
+
+        // Toggle details when row is clicked
+        $('.list-row').on('click', function() {
+           $('#' + $(this).data('entry')).toggle();
+        });
+    </script>
+</body>
+<footer>
+
+</footer>
+</html>

@@ -1,0 +1,112 @@
+.container {
+    max-width: 928px;
+}
+
+.header {
+    background-color: #2B7FC3;
+    height: 50px;
+    padding: 0 24px;
+    color: #c9e2f1;
+    margin-bottom: 25px;
+    border-top: 4px solid #1d5c8f;
+    border-bottom: 2px solid #d7d5d4;
+}
+
+.header-content {
+    margin: 0 auto;
+    width: 928px;
+    padding-top: 4px;
+}
+
+.company-logo {
+    max-width: 150px;
+}
+
+th:first-child, td:first-child{
+    padding-left: 15px;
+}
+
+th:last-child, td:last-child {
+    padding-right: 15px;
+}
+
+/* Text styles */
+.title {
+    color: #1d80be;
+    font-weight: bolder;
+    vertical-align: top;
+}
+
+.company {
+    color: #999;
+    font-weight: 100;
+    vertical-align: top;
+}
+
+.location {
+    color: #999;
+    font-weight: 100;
+}
+
+.type {
+    color: #1d9a00;
+    font-weight: bold;
+    vertical-align: top;
+}
+
+/* Just added this so the results don't sit at the very bottom of the page */
+footer {
+    min-height: 300px;
+}
+
+.list-row {
+    cursor: pointer;
+}
+
+button.button-primary {
+    background-color: #869ca9;
+    border: none;
+}
+
+button.button-primary:hover {
+    background-color: #9fb6c3;
+    border: none;
+}
+
+#search-button {
+    float: right;
+    margin-right: 20px;
+    margin-top: 25px;
+}
+
+table {
+    background: url('../images/page-fade.png') no-repeat right top;
+    padding: 10px 28px 15px 4px;
+    margin-top: -9px;
+    margin-left: -4px;
+}
+
+thead {
+    padding: 0 24px;
+}
+
+tbody {
+    padding: 0 24px;
+}
+
+th:first-child {
+    padding-left: 10px;
+}
+
+#id_description, #id_location {
+    font-size: 11.8px;
+    min-width: 260px;
+}
+
+.nomargin {
+    margin-left: 0;
+}
+
+.full_time_div {
+    margin-top: 35px;
+}
