@@ -22,8 +22,8 @@ def search(request):
     form = QueryForm()
 
     if 'description' in request.GET and 'location' in request.GET:
-        description = request.GET.get('description', '')
-        location = request.GET.get('location', '')
+        description = request.GET.get('description', None)
+        location = request.GET.get('location', None)
         full_time = request.GET.get('full_time', False)
 
         try:
@@ -46,15 +46,16 @@ def search(request):
 
 def get_search_results(description=None, location=None, full_time=False):
     """ Hit the GitHub API for search results """
-    url = settings.JOBS_API_ROOT
+    url = settings.JOBS_API_ROOT + "?"
+
     if description:
-        url += "?description={}&".format(description)
+        url += "description={}&".format(description)
 
     if location:
-        url += "?location={}&".format(location)
+        url += "location={}&".format(location)
 
     if full_time:
-        url += "?full_time=true"
+        url += "full_time=true"
 
     response = requests.get(url)
 
